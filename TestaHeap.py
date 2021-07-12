@@ -1,27 +1,12 @@
-from Heap import Heap
+from Huffman import Huffman
+from IoUtils import IoUtils
 
-heap = Heap()
+strtest = IoUtils.readFile('teste.txt')
 
-heap.heapify([2,7,26,25,19,17,1,90,3,36])
-heap.printList()
+huffman = Huffman.forCompression(strtest)
+IoUtils.writeFile('output.txt', huffman.translationJson, huffman.compress())
 
-heap.insert(3)
-heap.printList()
+frequencies, compressed = IoUtils.readCompressedFile("output.txt")
 
-heap.insert(2)
-heap.printList()
-
-
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
-print(heap.extractMin())
+decompressionHuffman = Huffman.forDecompression(frequencies)
+IoUtils.writeDecompressedFile("output-decompressed.txt", decompressionHuffman.decompress(compressed))
