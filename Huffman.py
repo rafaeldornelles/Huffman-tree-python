@@ -2,7 +2,7 @@ import json
 from typing import Dict
 
 from Heap import Heap
-from IoUtils import IoUtils
+from utils.IoUtils import IoUtils
 from Nodo import Nodo
 
 
